@@ -1,6 +1,7 @@
 // our homepage, to fetch posts and display this data
 
 import { useEffect, useState } from 'react'; 
+import Header from './components/header'
 
 export default function Home() {
     // const [posts, setPosts] = useState([]);
@@ -17,6 +18,7 @@ export default function Home() {
 
 return (
     <div>
+        <Header />
         <h1 className='text-red-600 text-xl'>This is the homepage</h1>
         <p>some sample text</p>
         <a href="/about/">about</a><br/> {/* this links to the about page, which is also in this directory */}
