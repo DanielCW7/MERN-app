@@ -9,7 +9,6 @@ export default MyApp
 
 /*
 
-
  this file acts as a wrapper for all pages in this project, allowing me to add global styles,
  configurations, layouts, and other customizations.
  this file is recognized as the entry point for my application. Nextjs recognizes this file
@@ -42,5 +41,4 @@ export default MyApp
   Exporting the Custom App Component: 
   Finally, you export the custom App component as the default export from the _app.js file.
 
-  
  */

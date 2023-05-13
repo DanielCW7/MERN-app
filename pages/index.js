@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'; 
 import Header from './components/header'
+import Nav from './components/nav';
 
 export default function Home() {
     // const [posts, setPosts] = useState([]);
@@ -18,11 +19,14 @@ export default function Home() {
 
 return (
     <div>
+        <Nav />
         <Header />
-        <h1 className='text-red-600 text-xl'>This is the homepage</h1>
-        <p>some sample text</p>
-        <a href="/about/">about</a><br/> {/* this links to the about page, which is also in this directory */}
-        <a href="/bio/">Bio</a>
+        <h1 className='text-red-600 text-xl p-5'>This is the homepage</h1>
+        <p className='px-5'>
+            This app was made to demonstrate C.R.U.D. (Create, Read, Update, and Delete) using a todo list!
+            feel free to add items to your list so that you can help keep track of your daily todos. The data
+            entered and saved here is only visibile in your browser.
+        </p>
 
         {/* {posts.map((post) => {
             <div key={post.id}>
