@@ -19,7 +19,7 @@ export default function Home() {
 return (
     <div>
         <Header />
-        <h1 className='text-red-600 text-xl'>This is the homepage,(small change)</h1>
+        <h1 className='text-red-600 text-xl'>This is the homepage</h1>
         <p>some sample text</p>
         <a href="/about/">about</a><br/> {/* this links to the about page, which is also in this directory */}
         <a href="/bio/">Bio</a>
