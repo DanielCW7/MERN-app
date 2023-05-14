@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'; 
 import Header from './components/header'
 import Nav from './components/nav';
+import Item from './components/item';
 
 export default function Home() {
     // const [posts, setPosts] = useState([]);
@@ -28,6 +29,12 @@ return (
             entered and saved here is only visibile in your browser.
         </p>
 
+        <div>
+            <Item />
+            <Item />
+            <Item />
+            <Item />
+        </div>
         {/* {posts.map((post) => {
             <div key={post.id}>
                 <h2>test</h2>

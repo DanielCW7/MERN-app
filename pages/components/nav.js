@@ -1,4 +1,3 @@
-// nav will contain a simple project directory
 
 const Nav = () => {
     return (
