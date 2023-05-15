@@ -1,3 +1,4 @@
+// data structure for individual posts
 const mongoose = require('mongoose');
 
 const postSchema = new mongoose.Schema({
