@@ -19,5 +19,10 @@ export default async function handler(req, res) {
         const post = new Post({ title, content });
         await post.save();
         res.status(201).json(post);
+    } else if (req.method === 'PUT') {
+        // edits a post      
+          
+    } else {
+        // delete post
     }
 }
