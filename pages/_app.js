@@ -1,5 +1,4 @@
 import './images/html.webp';
-import './images/html.webp';
 import '../styles/globals.css';
 
 function MyApp({ Component, pageProps }) {

@@ -1,22 +1,12 @@
 // our homepage, to fetch posts and display this data
 
-import { useEffect, useState } from 'react'; 
 import Header from './components/header'
 import Nav from './components/nav';
-import Item from './components/item';
-
+import Collection from './components/collection';
+import connectDB from '../lib/db';
 export default function Home() {
-    // const [posts, setPosts] = useState([]);
 
-    // useEffect(() => {
-    //     const fetchPosts = async () => {
-    //         const res = await fetch('/api/posts');
-    //         const data = await res.json();
-    //         setPosts(data);
-    //     };
-    //     fetchPosts();
-    // }, []);
-
+    connectDB()
 
 return (
     <div>
@@ -28,13 +18,8 @@ return (
             feel free to add items to your list so that you can help keep track of your daily todos. The data
             entered and saved here is only visibile in your browser.
         </p>
+        <Collection />
 
-        <div>
-            <Item />
-            <Item />
-            <Item />
-            <Item />
-        </div>
         {/* {posts.map((post) => {
             <div key={post.id}>
                 <h2>test</h2>
