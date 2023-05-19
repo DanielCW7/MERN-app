@@ -17,7 +17,7 @@ return (
             This app was made to demonstrate C.R.U.D. (Create, Read, Update, and Delete) using a todo list!
             feel free to add items to your list so that you can help keep track of your daily todos. The data
             entered and saved here is only visibile in your browser.
-        </p>
+        </p>        
         <Collection />
 
         {/* {posts.map((post) => {

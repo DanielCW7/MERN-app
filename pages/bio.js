@@ -2,6 +2,7 @@ import Header from './components/header'
 import Nav from './components/nav';
 
 const Bio = () => {
+
     return (
         <div>
             <Nav />
@@ -10,6 +11,7 @@ const Bio = () => {
             <p> this page is the bio page </p>
             <a href="/">Home</a><br/>
             <a href="/about/">About</a>
+
         </div>
     )
 }
