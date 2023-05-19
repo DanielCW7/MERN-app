@@ -6,7 +6,7 @@ const Item = (param) => {
             <h3> {param.todo ?? "error"} </h3>
             {/* form? -> button, checkbox, radios, form field edit */}
             <form>
-                <button className="bg-white rounded py-1 px-2 m-1"> edit title </button>
+                <button className="bg-white rounded py-1 px-2 m-1"> edit </button>
                 <button className="bg-white rounded py-1 px-2 m-2"> complete </button>
             </form>
         </div>
