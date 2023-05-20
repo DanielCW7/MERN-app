@@ -16,13 +16,6 @@ return (
             entered and saved here is only visibile in your browser.
         </p>        
         <Collection />
-
-        {/* {posts.map((post) => {
-            <div key={post.id}>
-                <h2>test</h2>
-                <p>{post.content}</p>
-            </div>
-        })} */}
     </div>
 );
 
