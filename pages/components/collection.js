@@ -26,9 +26,9 @@ const Collection = () => {
 
     return (
         <div className="flex flex-col justify-center">
-            { posts ? posts.map(e => <Item todo={e.todo}/>) : <div> nothing here </div> }
+            { posts ? posts.map(obj => <Item todo={obj.todo} desc={obj.description} />) : <div> nothing here </div> }
             <form className="flex flex-row justify-center bg-gray-200 m-5 p-5 rounded">
-                <button className="">add + </button>
+                <button className="border-2 border-gray-300 p-2 rounded">add + </button>
             </form>
         </div>
     )
