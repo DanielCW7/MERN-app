@@ -1,5 +1,6 @@
 import './images/html.webp';
 import '../styles/globals.css';
+import mongoose from 'mongoose';
 
 function MyApp({ Component, pageProps }) {
     return <Component {...pageProps} />

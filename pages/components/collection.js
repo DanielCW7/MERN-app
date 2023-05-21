@@ -3,6 +3,7 @@ import connectDB from '../../lib/db';
 import { set } from "mongoose";
 import { useEffect, useState } from 'react'; 
 
+
 const Collection = () => {
 
     const [posts, setPosts] = useState([]);
@@ -18,39 +19,53 @@ const Collection = () => {
         };
         fetchPosts();
     }, []);
+    console.log("posts received: ", posts)
 
-    // const form = document.querySelector("#add");
-    // form.addEventListener("submit", event => {
-    //     event.preventDefault();
-    //     addItem()
-    // })
-    // const addItem = async (event) => {
-    //     event.preventDefault();
+    useEffect(() => {    
+        const form = document.querySelector("#add");
+        form.addEventListener("submit", event => {
+            event.preventDefault();
 
-    //     const form = event.target;
-    //     const title = form.elements.title.value;
-    //     const content = form.elements.content.value;
+            addItem(event)
+        })
+    
+        const addItem = async (event) => {
+    
+            const e = event.target;
+            const todo = e.elements[0].value;
+            const description = e.elements[1].value;
+            console.log(todo, description)
+            // this request fails
+            const res = await fetch('/api/posts', {
+                method: "POST",
+                body: JSON.stringify({ todo, description}),
+                header: {
+                    'Content-Type' : 'applications/json'
+                }
+            });
+            // 500 error
+            console.log(res)
+            if(res.ok) {
+                const data = await res.json();
+                console.log("requested", data);
+                setPosts(prevPosts => [...prevPosts, data] );
+                console.log(prevPosts, data)
+            } else {
+                console.log("failed to create new post")
+            }
+        };
+    }, []);
 
-    //     const res = await fetch('/api/posts', {
-    //         method: "POST",
-    //         body: JSON.stringify({ title, content}),
-    //         header: {
-    //             'Content-Type' : 'applications/json'
-    //         }
-    //     });
 
-    //     if(res.ok) {
-    //         const data = await res.json();
-    //         console.log("requested", data);
-    //         setPosts(prevPosts => [...prevPosts, data] );
-    //     } else {
-    //         console.log("failed to create new post")
-    //     }
-    // };
+
 
     return (
         <div className="flex flex-col justify-center">
-            { posts ? posts.map(obj => <Item todo={obj.todo} desc={obj.description} />) : <div> nothing here </div> }
+            { 
+                posts ? posts.map(obj => <Item todo={obj.todo} desc={obj.description} key={obj._id} />) 
+                : 
+                <div> nothing here </div> 
+            }
             <form id="add" className="flex flex-col justify-center bg-gray-200 m-5 rounded">
                 <input type="textbox" placeholder="task" className="bg-white py-1 px-2 m-2" required />
                 <input type="textbox" placeholder="task description" className="bg-white py-1 px-2 m-2" required />

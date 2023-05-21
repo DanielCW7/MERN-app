@@ -19,11 +19,9 @@ export default async function handler(req, res) {
         res.status(200).json(todos);
     } else if (req.method === 'POST') {
         // create a new post
-        const { title, content } = req.body;
-        const post = new Todo({ title, content });
+        const { todo, description } = req.body;
+        const post = new Todo({ todo, description });
         await post.save();
         res.status(201).json(post);
-    } else {
-        
     }
 }
