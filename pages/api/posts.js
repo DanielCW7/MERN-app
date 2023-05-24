@@ -1,8 +1,8 @@
 // for handling api route related posts
 
 import connectDB from "../../lib/db";
-import mongoose from "mongoose"
-
+import mongoose from "mongoose";
+import Todo from '../../models/post';
 // const Todo = require('../../models/post');
 // this function comes from connectDB^ and is responsible for establishing DB connection
 connectDB();

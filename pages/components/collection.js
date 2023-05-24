@@ -39,7 +39,7 @@ const Collection = () => {
             const res = await fetch('/api/posts', {
                 method: "POST",
                 body: JSON.stringify({ todo, description}),
-                header: {
+                headers: {
                     'Content-Type' : 'applications/json'
                 }
             });
