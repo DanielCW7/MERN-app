@@ -38,12 +38,12 @@ const Collection = () => {
             // this request fails
             const res = await fetch('/api/posts', {
                 method: "POST",
-                body: JSON.stringify({ todo, description}),
+                body: JSON.stringify({ todo, description }),
                 headers: {
-                    'Content-Type' : 'applications/json'
+                    'Content-Type' : 'application/json'
                 }
             });
-            // 500 error
+            // 500 response v
             console.log(res)
             if(res.ok) {
                 const data = await res.json();

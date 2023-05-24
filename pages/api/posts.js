@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
         // retrieve all posts
         // responds with a 200 code and returns the posts in JSON format
-        const todos = await database.collection('posts').find().toArray();
+        const todos = await database.collection('todos').find().toArray();
         res.status(200).json(todos);
     } else if (req.method === 'POST') {
         // create a new post
