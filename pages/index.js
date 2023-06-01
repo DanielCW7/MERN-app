@@ -1,10 +1,8 @@
 // our homepage, to fetch posts and display this data
 import Nav from './components/nav';
 import Collection from './components/collection';
-import connectDB from '../lib/db';
 export default function Home() {
 
-    connectDB()
 
 return (
     <div>

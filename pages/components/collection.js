@@ -1,65 +1,117 @@
-import Item from "./item";
-import connectDB from '../../lib/db';
 import { useEffect, useState } from 'react';
+import Item from './item';
+import Loading from './loading';
+
 
 const Collection = () => {
-  const [posts, setPosts] = useState([]);
+
+  const[todos, setTodos] = useState([]);
+  const [newTodo, setNewTodo] = useState('');
 
   // by default, initiates a GET request on initial load
-  useEffect(() => {
-    const fetchPosts = async () => {
-      const res = await fetch('/api/posts');
-      const data = await res.json();
-      console.log("requested", data);
 
-      setPosts(data);
-    };
-    fetchPosts();
-  }, []);
 
-  useEffect(() => {
-    const form = document.querySelector("#add");
-    form.addEventListener("submit", event => {
-      event.preventDefault();
-      addItem(event);
-    });
+// =====================================================================================================
 
-    const addItem = async (event) => {
-      const e = event.target;
-      const todo = e.elements[0].value;
-      const description = e.elements[1].value;
-      console.log(todo, description);
 
-      const res = await fetch('/api/posts', {
-        method: "POST",
-        body: JSON.stringify({ todo, description }),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
+  const printStorage = () => {
+    const storage = localStorage.getItem("data");
+    const adj = JSON.parse(storage)
+    console.log(adj)
+  }
 
-      if (res.ok) {
-        const data = await res.json();
-        console.log("requested", data);
-        setPosts(prevPosts => [...prevPosts, data]);
+
+  // print out everything in localstorage
+  const checkStorage = () => {
+      // retrieve the localstorage variable and convert back to JSON
+      const a = localStorage.getItem("data")
+      const storedData = JSON.parse(a)
+      console.log(todos, storedData)
+
+      if(todos !== storedData) {
+        Find()
       } else {
-        console.log("failed to create new post");
+        return
       }
-    };
-  }, []);
+  }
+
+    // localStorage.setItem(example, JSON.stringify(example))
+  const store = (receivedData) => {
+    // takes data as it is received from the database
+    console.log(receivedData)
+    // convert to a string from JSON so that it can be stored
+    localStorage.setItem("data", JSON.stringify(receivedData))
+    // checks storage to compare what's stored
+    checkStorage()
+  }
+
+// trigger a fetch request
+  const Find = () => {
+      fetch('/api/todos')
+      .then((response) => {
+        console.log(response) 
+        return response.json()
+    })
+      .then((data) => {
+        console.log(data)
+        setTodos(data)
+        store(data)
+    })
+  }
+// =====================================================================================================
+
+// default load data on load
+  useEffect(() => { Find() }, []);
+
+  const handleAddTodo = () => {
+    fetch('/api/todos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ todo: newTodo })
+    })
+    .then((response) => {
+      response.json()
+      console.log(response)
+    })
+    .then((data) => {
+      console.log(data)
+      setTodos([...todos, data]);
+      setNewTodo('');
+    })
+  }
+
+  // const handleDeleteTodo = (id) => {
+  //   fetch('/api/todos', {
+  //     method: 'DELETE',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify({ id })
+  //   })
+  //   .then((response) => response.json())
+  //   .then((deletedCount) => {
+  //     if(deletedCount === 1) {
+  //       const updatedTodos = todos.filter((todo) => todo._id !== id);
+  //       setTodos(updatedTodos);
+  //     }
+  //   })
+  // }
 
   return (
-    <div className="flex flex-col justify-center">
+    <div className="flex flex-col justify-center" onLoad={checkStorage}>
       {
-        posts.length > 0 ? posts.map(obj => <Item todo={obj.todo} desc={obj.description} key={obj._id} />)
-          : <div> nothing here </div>
+        todos.length > 0 ? todos.map(obj => {
+          return <Item todo={obj.todo} key={obj._id} />})
+          : <Loading />
       }
-      <form id="add" className="flex flex-col justify-center bg-gray-200 m-5 rounded">
-        <input type="textbox" placeholder="task" className="bg-white py-1 px-2 m-2" required />
-        <input type="textbox" placeholder="task description" className="bg-white py-1 px-2 m-2" required />
-        {/* button triggers the POST request */}
-        <button type="submit" className="p-5 rounded"> add item </button>
-      </form>
+      <input className="border-2 border-black" type="text" value={newTodo} onChange={(e) => {setNewTodo(e.target.value)}}/>
+      <button onClick={printStorage}> Add Todo </button>
+      {/* <ul>
+        {todos.map((todo) => {
+          <li key={todo._id}> 
+            {todo.text} 
+            <button onClick={() => handleDeleteTodo(todo._id)}> Delete Todo </button>
+          </li>
+        })}
+      </ul> */}
     </div>
   );
 };

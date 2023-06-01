@@ -18,7 +18,7 @@ const Item = (param) => {
             :
             <div className="flex flex-col my-2 gap-2">
                 <h3 className="p-2"> {param.todo} </h3>
-                <p className="p-2"> {param.desc} </p>
+                <p className="p-2"> desc </p>
             </div>}
             <button className="bg-white rounded py-1 px-2 m-1" onClick={edit}> edit </button>
             {toggle ? 
